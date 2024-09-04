@@ -25,7 +25,7 @@ def create_chart(df):
                   row=1, col=1)
 
     # Add moving averages and EMA
-    fig.add_trace(go.Scatter(x=df.index, y=df['SMA20'], name='SMA20', line=dict(color='yellow')), row=1, col=1)
+    fig.add_trace(go.Scatter(x=df.index, y=df['SMA20'], name='SMA20', line=dict(color='blue')), row=1, col=1)
     fig.add_trace(go.Scatter(x=df.index, y=df['SMA50'], name='SMA50', line=dict(color='orange')), row=1, col=1)
     fig.add_trace(go.Scatter(x=df.index, y=df['SMA200'], name='SMA200', line=dict(color='red')), row=1, col=1)
     fig.add_trace(go.Scatter(x=df.index, y=df['EMA9'], name='EMA9', line=dict(color='purple')), row=1, col=1)
