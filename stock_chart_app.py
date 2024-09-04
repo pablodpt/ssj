@@ -9,6 +9,7 @@ def fetch_stock_data(ticker, start_date, end_date):
     return yf.download(ticker, start=start_date, end=end_date)
 
 def calculate_indicators(df):
+    df['SMA20'] = SMAIndicator(close=df['Close'], window=20).sma_indicator()
     df['SMA50'] = SMAIndicator(close=df['Close'], window=50).sma_indicator()
     df['SMA200'] = SMAIndicator(close=df['Close'], window=200).sma_indicator()
     df['EMA9'] = EMAIndicator(close=df['Close'], window=9).ema_indicator()
@@ -24,6 +25,7 @@ def create_chart(df):
                   row=1, col=1)
 
     # Add moving averages and EMA
+    fig.add_trace(go.Scatter(x=df.index, y=df['SMA20'], name='SMA20', line=dict(color='yellow')), row=1, col=1)
     fig.add_trace(go.Scatter(x=df.index, y=df['SMA50'], name='SMA50', line=dict(color='orange')), row=1, col=1)
     fig.add_trace(go.Scatter(x=df.index, y=df['SMA200'], name='SMA200', line=dict(color='red')), row=1, col=1)
     fig.add_trace(go.Scatter(x=df.index, y=df['EMA9'], name='EMA9', line=dict(color='purple')), row=1, col=1)
